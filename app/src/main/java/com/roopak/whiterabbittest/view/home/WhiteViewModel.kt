@@ -18,13 +18,13 @@ class WhiteViewModel(private val repo: WhiteRabbitRepo)  : BaseViewModel() {
         viewModelScope.launch(Dispatchers.IO+handler) {
             val response = repo.getDataFromCloud()
             response?.let { apiResponse ->
-                val profiles = apiResponse.reps
+                val profiles = response
 
 
                 profiles.forEach{
                     val shop = RvCompanyProfile(profileImage = ObservableField(it.profileImage)
                         , name = ObservableField(it.name)
-                        ,companyName = ObservableField(it.address.toString())
+                        ,companyName = ObservableField(it.email)
                     )
                     rvProfileViewModel?.add(shop)
                 }

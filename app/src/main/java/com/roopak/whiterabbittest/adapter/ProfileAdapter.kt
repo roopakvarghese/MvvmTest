@@ -10,11 +10,11 @@ import com.roopak.whiterabbittest.databinding.RvListProfileBinding
 import com.roopak.whiterabbittest.models.RvCompanyProfile
 
 class ProfileAdapter : RecyclerView.Adapter<ProfileAdapter.ViewHolder>()  {
-    private var shopsViewModels:List<RvCompanyProfile> = mutableListOf<RvCompanyProfile>()
+    private var profileViewModels:List<RvCompanyProfile> = mutableListOf<RvCompanyProfile>()
 
-    fun setShopData(shopsViewModel: List<RvCompanyProfile>? ){
+    fun setProfileData(shopsViewModel: List<RvCompanyProfile>? ){
         shopsViewModel?.let{
-            this.shopsViewModels = it
+            this.profileViewModels = it
             notifyDataSetChanged()
         }
 
@@ -28,13 +28,13 @@ class ProfileAdapter : RecyclerView.Adapter<ProfileAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val shop = shopsViewModels[position]
+        val shop = profileViewModels[position]
         holder.bind(shop)
 
     }
 
     override fun getItemCount(): Int {
-        return shopsViewModels.size
+        return profileViewModels.size
     }
 
     inner class ViewHolder(private val binding: RvListProfileBinding) :
