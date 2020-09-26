@@ -11,21 +11,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WhiteViewModel(private val repo: WhiteRabbitRepo)  : BaseViewModel() {
-    var rvShopViewModel: ObservableList<RvCompanyProfile>? = ObservableArrayList()
+    var rvProfileViewModel: ObservableList<RvCompanyProfile>? = ObservableArrayList()
 
     fun callApi(){
-        rvShopViewModel?.clear()
+        rvProfileViewModel?.clear()
         viewModelScope.launch(Dispatchers.IO+handler) {
             val response = repo.getDataFromCloud()
             response?.let { apiResponse ->
-                val name = apiResponse.name
-               /* query.forEach{
-                    val shop = RvCompanyProfile(profileImage = ObservableField(it.title)
-                        , name = ObservableField(it.title)
-                        ,comapnyName = ObservableField(it.pageid.toString())
+                val profiles = apiResponse.reps
+
+
+                profiles.forEach{
+                    val shop = RvCompanyProfile(profileImage = ObservableField(it.profileImage)
+                        , name = ObservableField(it.name)
+                        ,companyName = ObservableField(it.address.toString())
                     )
-                   // rvShopViewModel?.add(shop)
-                }*/
+                    rvProfileViewModel?.add(shop)
+                }
 
             }
 

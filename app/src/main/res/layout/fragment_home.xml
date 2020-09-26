@@ -6,10 +6,44 @@
         <variable
             name="clickHelper"
             type="com.roopak.whiterabbittest.utils.helpers.ClickHelper" />
+        <variable
+            name="adapter"
+            type="com.roopak.whiterabbittest.adapter.ProfileAdapter" />
+        <variable
+            name="decorator"
+            type="com.roopak.whiterabbittest.view.utils.CustomDecorator" />
+        <variable
+            name="vm"
+            type="com.roopak.whiterabbittest.view.home.WhiteViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="views.home.HomeFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProfileList"
+        setAdapter="@{adapter}"
+        setData="@{vm.rvProfileViewModel}"
+        setDecorator="@{decorator}"
+        tools:listitem="@layout/rv_list_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical"
+        android:splitMotionEvents="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="5"
+       >
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
